@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 
 interface CalendarModalProps {
   isOpen: boolean;
@@ -16,19 +16,25 @@ const CalendarModal = ({
   onDateSelect,
   selectedDate: initialSelectedDate,
 }: CalendarModalProps) => {
-  const today = new Date();
+  const today = useMemo(() => new Date(), []);
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   const [selectedDate, setSelectedDate] = useState<string | undefined>(
     initialSelectedDate,
   );
 
-  const daysOfWeek = ["월", "화", "수", "목", "금", "토", "일"];
+  const daysOfWeek = useMemo(
+    () => ["월", "화", "수", "목", "금", "토", "일"],
+    [],
+  );
 
-  const getFormattedDate = (year: number, month: number, date: number) => {
-    const dayOfWeek = daysOfWeek[new Date(year, month, date).getDay()];
-    return `${year}년 ${month + 1}월 ${date}일 ${dayOfWeek}`;
-  };
+  const getFormattedDate = useCallback(
+    (year: number, month: number, date: number) => {
+      const dayOfWeek = daysOfWeek[new Date(year, month, date).getDay()];
+      return `${year}년 ${month + 1}월 ${date}일 ${dayOfWeek}`;
+    },
+    [daysOfWeek],
+  );
 
   useEffect(() => {
     if (isOpen && !selectedDate)

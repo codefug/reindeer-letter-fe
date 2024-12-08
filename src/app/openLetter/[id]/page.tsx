@@ -1,7 +1,9 @@
-export default function OpenLetterPage() {
+import OpenLetter from "@/components/openLetter/OpenLetter";
+
+export default function Page() {
   return (
-<div>
-  header
-</div>
+    <>
+      <OpenLetter />
+    </>
   );
 }

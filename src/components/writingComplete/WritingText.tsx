@@ -1,14 +1,17 @@
-'use client'
-import { useParams, useSearchParams } from "next/navigation"
+"use client";
 
-export default function WritingText (){
-    const searchParams = useSearchParams()
-    const nickNamequery = searchParams.get('nickName') ?? ''
-    const nickName = decodeURIComponent(nickNamequery)
+import { useSearchParams } from "next/navigation";
 
-    return(
-        <div className="flex items-center justify-center mt-auto text-center font-bold text-xl">
-        {nickName}에게<br/>편지를 보냈습니다!
-      </div>
-    )
+export default function WritingText() {
+  const searchParams = useSearchParams();
+  const nickNamequery = searchParams.get("nickName") ?? "";
+  const nickName = decodeURIComponent(nickNamequery);
+
+  return (
+    <div className="mt-auto flex items-center justify-center text-center text-xl font-bold">
+      {nickName}에게
+      <br />
+      편지를 보냈습니다!
+    </div>
+  );
 }

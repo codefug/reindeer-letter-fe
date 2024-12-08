@@ -23,7 +23,6 @@ const LoginPage = () => {
   const [, setId] = useLocalStorage("userId");
   const [, setToken] = useLocalStorage("token");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const onSubmit = async (data: LoginFormInputs) => {
     if (isSubmitting) return;

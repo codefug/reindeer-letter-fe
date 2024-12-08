@@ -64,7 +64,6 @@ const Page = () => {
   };
 
   const daysDifference = calculateDaysDifference(selectedDate);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const handleSubmitLetter = async () => {
     if (!selectedDate) {
